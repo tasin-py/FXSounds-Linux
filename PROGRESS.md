@@ -124,3 +124,12 @@ Resume point for future sessions. Update after every milestone.
 - BUG fixed: donate links / update page did nothing when no browser is registered (xdg-open exits 0) ->
   FxLinux::openUrl checks xdg-mime, else copies the link and shows a message.
 - Donate links verified in Firefox (both options open the right page via tray menu).
+- PUBLISHED 2026-11-17: code pushed to github.com/tasin-py/FXSounds-Linux (main), release v1.2.15.1 with
+  6 assets (tar.gz, deb, rpm, arch pkg, pkgroot, SHA256SUMS). gh CLI installed + logged in as tasin-py.
+  Local git repo in the project folder (author "Tasin's Problems" <101010074+tasin-py@users.noreply.github.com>);
+  .gitignore keeps vm/, dist/, Windows app copy/user data, test recordings out of git.
+- get.sh verified from the live release: Arch VM (pacman), Ubuntu 26.04 (deb + --uninstall), Fedora --user.
+  releases/latest redirect -> tag v1.2.15.1 (update check reads this; same as installed = "up to date").
+- New release: bump FX_VERSION in CMakeLists.txt, sh tools/build-release.sh (Ubuntu-24.04 WSL),
+  tools/build-native-pkgs.sh rpm (FedoraLinux-44, root) and arch (archtest, root) -> dist/ + SHA256SUMS,
+  then gh release create v<ver> dist/* --notes-file packaging/RELEASE_NOTES.md.
