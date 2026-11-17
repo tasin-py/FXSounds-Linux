@@ -1,7 +1,11 @@
-# FxSound for Linux 1.2.15.1
+# FxSound for Linux 1.2.15.2
 
-The first release of FxSound for Linux. It has the same app, presets and sound as FxSound 1.2.15
-for Windows.
+FxSound for Linux, with the same app, presets and sound as FxSound 1.2.15 for Windows.
+
+## Fixed in 1.2.15.2
+
+* If your chosen output was unplugged (for example headphones), turning FxSound off or quitting now
+  sends the sound back to a device that is still there, instead of leaving it on FxSound's device.
 
 ## Install
 
@@ -11,14 +15,14 @@ for Windows.
 curl -fsSL https://raw.githubusercontent.com/tasin-py/FXSounds-Linux/main/get.sh | sh
 ```
 
-**Any distro:** download `FxSound-1.2.15.1-linux-x86_64.tar.gz`, extract it, and run `./install.sh`
+**Any distro:** download `FxSound-1.2.15.2-linux-x86_64.tar.gz`, extract it, and run `./install.sh`
 in the extracted folder. No root needed.
 
 | Your distro | Download |
 |---|---|
-| Ubuntu 24.04+, Debian 13+, Mint 22+, Pop!_OS, Kali | `fxsound_1.2.15.1_amd64.deb` (double-click, or `sudo apt install ./fxsound_1.2.15.1_amd64.deb`) |
-| Fedora 40+, openSUSE Tumbleweed | `fxsound-1.2.15.1-1.x86_64.rpm` (`sudo dnf install ./fxsound-1.2.15.1-1.x86_64.rpm` / `sudo zypper install ./...`) |
-| Arch, Manjaro, EndeavourOS | `fxsound-bin-1.2.15.1-1-x86_64.pkg.tar.zst` (`sudo pacman -U ./fxsound-bin-...`) |
+| Ubuntu 24.04+, Debian 13+, Mint 22+, Pop!_OS, Kali | `fxsound_1.2.15.2_amd64.deb` (double-click, or `sudo apt install ./fxsound_1.2.15.2_amd64.deb`) |
+| Fedora 40+, openSUSE Tumbleweed | `fxsound-1.2.15.2-1.x86_64.rpm` (`sudo dnf install ./fxsound-1.2.15.2-1.x86_64.rpm` / `sudo zypper install ./...`) |
+| Arch, Manjaro, EndeavourOS | `fxsound-bin-1.2.15.2-1-x86_64.pkg.tar.zst` (`sudo pacman -U ./fxsound-bin-...`) |
 
 Requires a 64-bit PC and PipeWire (the default sound system on all of the above).
 

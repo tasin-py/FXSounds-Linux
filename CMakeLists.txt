@@ -4,7 +4,7 @@
 cmake_minimum_required(VERSION 3.22)
 
 # Linux release version: upstream 1.2.15 + Linux port revision (GitHub release tags: v1.2.15.1, ...)
-set(FX_VERSION "1.2.15.1")
+set(FX_VERSION "1.2.15.2")
 project(FxSoundLinux VERSION ${FX_VERSION} LANGUAGES C CXX)
 
 set(JUCE_DIR "$ENV{HOME}/third_party/JUCE" CACHE PATH "JUCE 7 source tree")

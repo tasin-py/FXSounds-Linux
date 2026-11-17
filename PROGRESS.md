@@ -132,7 +132,8 @@ Resume point for future sessions. Update after every milestone.
   releases/latest redirect -> tag v1.2.15.1 (update check reads this; same as installed = "up to date").
 - New release: bump FX_VERSION in CMakeLists.txt, sh tools/build-release.sh (Ubuntu-24.04 WSL),
   tools/build-native-pkgs.sh rpm (FedoraLinux-44, root) and arch (archtest, root) -> dist/ + SHA256SUMS,
-  then gh release create v<ver> dist/* --notes-file packaging/RELEASE_NOTES.md.
+  then gh release create v<ver> dist/*<ver>* dist/SHA256SUMS --notes-file packaging/RELEASE_NOTES.md (dist/ keeps old
+  versions; never force-move a published tag - make a new version instead).
 - 2026-11-17 later: README rewritten (docs/images/banner.svg animated banner, docs/images/screenshot-kde.png,
   shields.io badges; no CI badge because there is no CI yet; user declined a resource-usage graph).
 - BUG fixed (engine/fx_engine.cpp hand_back_target): turning FxSound off / quitting handed the default back to the
@@ -141,3 +142,4 @@ Resume point for future sessions. Update after every milestone.
 - Re-test with the fixed packages: 13/13 arch, fedora, kali, ubuntu2404, ubuntu2604, opensuse, archtest; debian 11/13
   (known WSL D-Bus slowness). Audio identical on 7; ubuntu2404 -40 dB (PipeWire 1.0, as before); archtest showed
   gaps once (64% coverage) while the KDE VM also ran, identical on rerun.
+- 2026-11-17: released v1.2.15.2 (hand-back fix) as a new version instead of replacing the v1.2.15.1 files.

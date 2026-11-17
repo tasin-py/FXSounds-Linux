@@ -1,7 +1,7 @@
 # FxSound for Linux - RPM (Fedora, openSUSE, RHEL-likes with glibc >= 2.39).
 # Built from the prebuilt package tree made by tools/build-release.sh:
-#   rpmbuild -bb --define "_sourcedir $PWD/dist" --define "fxversion 1.2.15.1" packaging/rpm/fxsound.spec
-%{!?fxversion: %global fxversion 1.2.15.1}
+#   rpmbuild -bb --define "_sourcedir $PWD/dist" --define "fxversion 1.2.15.2" packaging/rpm/fxsound.spec
+%{!?fxversion: %global fxversion 1.2.15.2}
 %global debug_package %{nil}
 %global __strip /bin/true
 # the bundled fonts/presets are data, not ELF
