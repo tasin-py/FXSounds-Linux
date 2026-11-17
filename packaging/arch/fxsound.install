@@ -1,0 +1,4 @@
+pre_remove() {
+    # quit running FxSound windows so the normal output device comes back
+    pkill -TERM -x FxSound 2>/dev/null || true
+}

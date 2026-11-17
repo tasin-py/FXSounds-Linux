@@ -1,0 +1,24 @@
+# FxSound for Linux - Arch Linux / Manjaro / EndeavourOS package (prebuilt binary).
+#   makepkg -si      (downloads fxsound-<ver>-pkgroot.tar.gz from the GitHub release, or uses a copy next to this file)
+pkgname=fxsound-bin
+pkgver=1.2.15.1
+pkgrel=1
+pkgdesc="FxSound audio enhancer for Linux (PipeWire): equalizer, bass boost, clarity, surround, presets"
+arch=('x86_64')
+url="https://github.com/tasin-py/FXSounds-Linux"
+license=('AGPL-3.0-or-later')
+depends=('glibc' 'gcc-libs' 'libpipewire' 'libx11' 'libxext' 'libxrandr' 'libxinerama' 'libxcursor' 'freetype2' 'libayatana-appindicator')
+optdepends=('pipewire-pulse: sound from PulseAudio applications'
+            'wireplumber: PipeWire session manager'
+            'curl: update check')
+provides=('fxsound')
+conflicts=('fxsound')
+options=('!strip' '!debug')
+install=fxsound.install
+source=("https://github.com/tasin-py/FXSounds-Linux/releases/download/v${pkgver}/fxsound-${pkgver}-pkgroot.tar.gz")
+noextract=("fxsound-${pkgver}-pkgroot.tar.gz")
+sha256sums=('SKIP')
+
+package() {
+    tar -xzf "${srcdir}/fxsound-${pkgver}-pkgroot.tar.gz" -C "${pkgdir}"
+}

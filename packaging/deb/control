@@ -1,0 +1,18 @@
+Package: fxsound
+Version: @VERSION@
+Section: sound
+Priority: optional
+Architecture: amd64
+Installed-Size: @SIZE@
+Depends: libc6 (>= 2.39), libstdc++6, libgcc-s1, libpipewire-0.3-0t64 | libpipewire-0.3-0, libx11-6, libxext6, libxrandr2, libxinerama1, libxcursor1, libfreetype6, libayatana-appindicator3-1 | libappindicator3-1
+Recommends: pipewire-pulse, wireplumber, libcurl4t64 | libcurl4
+Suggests: libayatana-appindicator3-1, libgtk-3-0t64 | libgtk-3-0
+Maintainer: FxSound Linux port <noreply@fxsound-linux.invalid>
+Homepage: https://github.com/tasin-py/FXSounds-Linux
+Description: FxSound audio enhancer for Linux (PipeWire)
+ FxSound improves the sound of everything you play: 10-band equalizer,
+ clarity, ambience, surround, dynamic boost and bass boost, with the
+ presets of the Windows app. It adds an "FxSound" output device to
+ PipeWire and plays the enhanced sound on your speakers or headphones.
+ .
+ This is the Linux port of the open-source FxSound app (AGPL-3.0).

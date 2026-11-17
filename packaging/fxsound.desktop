@@ -1,0 +1,12 @@
+[Desktop Entry]
+Type=Application
+Name=FxSound
+GenericName=Audio Enhancer
+Comment=Better sound for everything you play: equalizer, bass boost, clarity, surround and presets
+Exec=@EXEC@
+Icon=fxsound
+Terminal=false
+Categories=AudioVideo;Audio;Mixer;
+Keywords=equalizer;eq;bass;boost;audio;sound;enhancer;pipewire;
+StartupWMClass=FxSound
+SingleMainWindow=true
