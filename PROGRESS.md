@@ -133,3 +133,11 @@ Resume point for future sessions. Update after every milestone.
 - New release: bump FX_VERSION in CMakeLists.txt, sh tools/build-release.sh (Ubuntu-24.04 WSL),
   tools/build-native-pkgs.sh rpm (FedoraLinux-44, root) and arch (archtest, root) -> dist/ + SHA256SUMS,
   then gh release create v<ver> dist/* --notes-file packaging/RELEASE_NOTES.md.
+- 2026-11-17 later: README rewritten (docs/images/banner.svg animated banner, docs/images/screenshot-kde.png,
+  shields.io badges; no CI badge because there is no CI yet; user declined a resource-usage graph).
+- BUG fixed (engine/fx_engine.cpp hand_back_target): turning FxSound off / quitting handed the default back to the
+  remembered device even when it no longer existed (unplugged headset) -> sound stayed on the FxSound sink.
+  Now: remembered device only if it still exists, else the device FxSound played to. Verified: vm/handback_test.sh.
+- Re-test with the fixed packages: 13/13 arch, fedora, kali, ubuntu2404, ubuntu2604, opensuse, archtest; debian 11/13
+  (known WSL D-Bus slowness). Audio identical on 7; ubuntu2404 -40 dB (PipeWire 1.0, as before); archtest showed
+  gaps once (64% coverage) while the KDE VM also ran, identical on rerun.

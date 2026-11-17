@@ -309,6 +309,20 @@ static void connect_playback(FxPw *pw)
                   res < 0 ? " - connect failed" : "");
 }
 
+// The device to give the system back when FxSound stops claiming the default: the default from before
+// FxSound took over, if that device still exists. A remembered device can be gone (headphones unplugged
+// while FxSound was on; the system keeps its name as the configured default) - then use the device
+// FxSound was playing to, otherwise the sound would land on the FxSound device itself.
+static std::string hand_back_target(FxPw *pw)
+{
+    const std::string &r = pw->restore_default;
+    if (!r.empty() && r != FX_NODE_NAME) {
+        std::lock_guard<std::mutex> l(pw->dev_mu);
+        for (auto &kv : pw->sinks) if (kv.second.name == r) return r;
+    }
+    return pw->active_output;
+}
+
 static void set_configured_default(FxPw *pw, const std::string &name)
 {
     if (!pw->metadata) return;
@@ -635,8 +649,7 @@ void FxEngine::stop()
     if (pw->claimed && pw->metadata) {
         // Give the system its previous default output back. If that is unknown (e.g. a previous
         // FxSound run was killed and left itself as the default), use the device we were playing to.
-        std::string back = (pw->restore_default.empty() || pw->restore_default == FX_NODE_NAME) ? pw->active_output : pw->restore_default;
-        set_configured_default(pw, back);
+        set_configured_default(pw, hand_back_target(pw));
         pw->claimed = false;
         // make sure the metadata update reaches the server before we disconnect
         sync_wait(pw);
@@ -739,7 +752,7 @@ void FxEngine::claimDefault(bool claim)
     pw_->reclaims.clear();
     if (claim) claim_default_now(pw_);
     else if (pw_->claimed) {
-        set_configured_default(pw_, (pw_->restore_default.empty() || pw_->restore_default == FX_NODE_NAME) ? pw_->active_output : pw_->restore_default);
+        set_configured_default(pw_, hand_back_target(pw_));
         pw_->claimed = false;
     }
     pw_thread_loop_unlock(pw_->loop);
@@ -768,7 +781,7 @@ std::string FxEngine::systemDefaultOutput()
     if (!pw_) return "";
     pw_thread_loop_lock(pw_->loop);
     std::string s;
-    if (pw_->claimed) s = pw_->restore_default;
+    if (pw_->claimed) s = hand_back_target(pw_);
     else if (pw_->configured_default != FX_NODE_NAME) s = pw_->configured_default;
     if (s.empty() || s == FX_NODE_NAME) s = pw_->active_output;
     pw_thread_loop_unlock(pw_->loop);
