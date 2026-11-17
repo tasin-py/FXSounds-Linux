@@ -36,6 +36,7 @@
 
 <p align="center">
   <a href="#install"><b>Install</b></a> ·
+  <a href="#uninstall"><b>Uninstall</b></a> ·
   <a href="#features"><b>Features</b></a> ·
   <a href="#usage"><b>Usage</b></a> ·
   <a href="#troubleshooting"><b>Troubleshooting</b></a> ·
@@ -116,6 +117,34 @@ Get the file for your distro from the [**latest release**](https://github.com/ta
 * A current distro: glibc 2.39 or newer (Ubuntu 24.04+, Debian 13+, Fedora 40+, or any rolling distro).
 * **PipeWire** for sound. It's the default on all the distros above.
 * For the tray icon: `libayatana-appindicator`. The packages install it for you; `install.sh` tells you if it's missing.
+
+## Uninstall
+
+### One command (any distro)
+
+```sh
+curl -fsSL https://raw.githubusercontent.com/tasin-py/FXSounds-Linux/main/get.sh | sh -s -- --uninstall
+```
+
+It finds how FxSound was installed (package, `--user` or `install.sh`) and removes it the same way.
+Your normal speakers or headphones become the default output again. Your settings and presets are kept.
+
+### Or with your package manager
+
+| Distro | Command |
+|---|---|
+| Ubuntu, Debian, Mint, Pop!_OS, Kali | `sudo apt remove fxsound` |
+| Fedora | `sudo dnf remove fxsound` |
+| openSUSE | `sudo zypper remove fxsound` |
+| Arch, Manjaro, EndeavourOS | `sudo pacman -R fxsound-bin` |
+
+### Remove your settings too
+
+To delete your settings, saved presets and log as well, run this after uninstalling:
+
+```sh
+rm -rf ~/.config/FxSound
+```
 
 ## Usage
 
